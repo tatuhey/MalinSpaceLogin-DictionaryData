@@ -27,7 +27,6 @@ namespace MalinSpaceLogin_DictionaryData
         
         Dictionary <int, string> MasterFile = new Dictionary <int, string>();
 
-
         //4.2.	Create a method that will read the data from the.csv file into the Dictionary data structure when the GUI loads.
 
 
