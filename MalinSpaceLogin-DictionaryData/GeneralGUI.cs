@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Xml.Linq;
+using System.IO;
 
 namespace MalinSpaceLogin_DictionaryData
 {
@@ -20,6 +21,8 @@ namespace MalinSpaceLogin_DictionaryData
         public GeneralGUI()
         {
             InitializeComponent();
+            ReadData();
+            DisplayDataInListBox();
         }
 
         //4.1.	Create a Dictionary data structure with a TKey of type integer and a TValue of type string,
@@ -28,10 +31,54 @@ namespace MalinSpaceLogin_DictionaryData
         Dictionary <int, string> MasterFile = new Dictionary <int, string>();
 
         //4.2.	Create a method that will read the data from the.csv file into the Dictionary data structure when the GUI loads.
+        public void ReadData()
+        {
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "MalinStaffNamesV2.csv");
 
+            try
+            {
+                if (File.Exists(filePath))
+                {
+                    var lines = File.ReadAllLines(filePath);
+
+                    foreach (var line in lines)
+                    {
+                        var parts = line.Split(',');
+
+                        // Assuming well-formed CSV and error handling for parsing 
+                        // the integer and avoiding duplicate keys.
+                        if (parts.Length == 2
+                            && int.TryParse(parts[0], out int id)
+                            && !MasterFile.ContainsKey(id))
+                        {
+                            MasterFile.Add(id, parts[1]);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("File does not exist", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+        }
 
         //4.3.	Create a method to display the Dictionary data into a non-selectable display only list box (ie read only).
+        private void DisplayDataInListBox()
+        {
+            lbStaffMain.Items.Clear();  // Clear any existing items
 
+            foreach (var entry in MasterFile)
+            {
+                lbStaffMain.Items.Add($"ID: {entry.Key}, Name: {entry.Value}");
+            }
+
+            lbStaffMain.SelectionMode = SelectionMode.None;  // Make the list box non-selectable
+        }
 
         //4.4.	Create a method to filter the Staff Name data from the Dictionary into a second filtered and selectable list box.
         //      This method must use a text box input and update as each character is entered.

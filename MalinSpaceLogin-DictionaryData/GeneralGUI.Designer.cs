@@ -28,36 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.lbStaffMain = new System.Windows.Forms.ListBox();
+            this.lbStaffSecondary = new System.Windows.Forms.ListBox();
             this.lbName = new System.Windows.Forms.Label();
             this.lbID = new System.Windows.Forms.Label();
             this.tbName = new System.Windows.Forms.TextBox();
             this.tbID = new System.Windows.Forms.TextBox();
             this.gbLogin = new System.Windows.Forms.GroupBox();
             this.gbShortcut = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.gbLogin.SuspendLayout();
             this.gbShortcut.SuspendLayout();
             this.SuspendLayout();
             // 
-            // listBox1
+            // lbStaffMain
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(54, 45);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(196, 342);
-            this.listBox1.TabIndex = 0;
+            this.lbStaffMain.FormattingEnabled = true;
+            this.lbStaffMain.Location = new System.Drawing.Point(54, 45);
+            this.lbStaffMain.Name = "lbStaffMain";
+            this.lbStaffMain.Size = new System.Drawing.Size(196, 355);
+            this.lbStaffMain.TabIndex = 0;
             // 
-            // listBox2
+            // lbStaffSecondary
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(302, 210);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(196, 186);
-            this.listBox2.TabIndex = 1;
+            this.lbStaffSecondary.FormattingEnabled = true;
+            this.lbStaffSecondary.Location = new System.Drawing.Point(302, 214);
+            this.lbStaffSecondary.Name = "lbStaffSecondary";
+            this.lbStaffSecondary.Size = new System.Drawing.Size(196, 186);
+            this.lbStaffSecondary.TabIndex = 1;
             // 
             // lbName
             // 
@@ -115,14 +115,14 @@
             this.gbShortcut.TabStop = false;
             this.gbShortcut.Text = "Shortcuts";
             // 
-            // label1
+            // label3
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "label1";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 54);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "label3";
             // 
             // label2
             // 
@@ -133,14 +133,14 @@
             this.label2.TabIndex = 9;
             this.label2.Text = "label2";
             // 
-            // label3
+            // label1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 54);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "label3";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "label1";
             // 
             // GeneralGUI
             // 
@@ -149,8 +149,8 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.gbShortcut);
             this.Controls.Add(this.gbLogin);
-            this.Controls.Add(this.listBox2);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.lbStaffSecondary);
+            this.Controls.Add(this.lbStaffMain);
             this.Name = "GeneralGUI";
             this.Text = "Malin Staff Details";
             this.gbLogin.ResumeLayout(false);
@@ -163,8 +163,8 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ListBox lbStaffMain;
+        private System.Windows.Forms.ListBox lbStaffSecondary;
         private System.Windows.Forms.Label lbName;
         private System.Windows.Forms.Label lbID;
         private System.Windows.Forms.TextBox tbName;
