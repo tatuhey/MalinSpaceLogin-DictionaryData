@@ -83,6 +83,8 @@
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(100, 20);
             this.tbName.TabIndex = 4;
+            this.tbName.TextChanged += new System.EventHandler(this.tbName_TextChanged);
+            this.tbName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbName_KeyDown);
             // 
             // tbID
             // 
@@ -90,6 +92,8 @@
             this.tbID.Name = "tbID";
             this.tbID.Size = new System.Drawing.Size(100, 20);
             this.tbID.TabIndex = 5;
+            this.tbID.TextChanged += new System.EventHandler(this.tbID_TextChanged);
+            this.tbID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbID_KeyDown);
             // 
             // gbLogin
             // 
