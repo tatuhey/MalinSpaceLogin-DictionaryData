@@ -58,6 +58,7 @@
             this.lbStaffSecondary.Name = "lbStaffSecondary";
             this.lbStaffSecondary.Size = new System.Drawing.Size(196, 186);
             this.lbStaffSecondary.TabIndex = 1;
+            this.lbStaffSecondary.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lbStaffSecondary_KeyDown);
             // 
             // lbName
             // 

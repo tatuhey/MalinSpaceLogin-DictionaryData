@@ -27,6 +27,7 @@ namespace MalinSpaceLogin_DictionaryData
             tbID.TextChanged += tbID_TextChanged;
             tbName.KeyDown += tbName_KeyDown;
             tbID.KeyDown += tbID_KeyDown;
+            lbStaffSecondary.KeyDown += lbStaffSecondary_KeyDown;
         }
 
         //4.1.	Create a Dictionary data structure with a TKey of type integer and a TValue of type string,
@@ -193,12 +194,31 @@ namespace MalinSpaceLogin_DictionaryData
                 ClearAndFocusTextBox(tbID);
                 e.Handled = true;
             }
-
         }
 
         //4.8.	Create a method for the filtered and selectable list box which will populate the two text boxes
         //      when a staff record is selected. Utilise the Tab and keyboard keys.
+        private void lbStaffSecondary_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter)
+            {
+                PopulateTextboxes();
+                e.Handled = true;
+            }
+        }
 
+        private void PopulateTextboxes()
+        {
+            if (lbStaffSecondary.SelectedItems != null)
+            {
+                string[] parts = lbStaffSecondary.SelectedItem.ToString().Split(new string[] { "    |    " }, StringSplitOptions.None);
+                if (parts.Length == 2)
+                {
+                    tbID.Text = parts[0].Trim();
+                    tbName.Text = parts[1].Trim();
+                }
+            }
+        }
 
         //4.9.	Create a method that will open the Admin GUI when the Alt + A keys are pressed.
         //      Ensure the General GUI sends the currently selected Staff ID and Staff Name
