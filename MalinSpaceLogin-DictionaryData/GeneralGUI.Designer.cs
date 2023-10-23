@@ -95,6 +95,7 @@
             this.tbID.TabIndex = 5;
             this.tbID.TextChanged += new System.EventHandler(this.tbID_TextChanged);
             this.tbID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbID_KeyDown);
+            this.tbID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbID_KeyPress);
             // 
             // gbLogin
             // 
@@ -134,18 +135,18 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(6, 41);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.Size = new System.Drawing.Size(80, 13);
             this.label2.TabIndex = 9;
-            this.label2.Text = "label2";
+            this.label2.Text = "Alt + I | Clear ID";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(102, 13);
             this.label1.TabIndex = 8;
-            this.label1.Text = "label1";
+            this.label1.Text = "Alt + N | Clear Name";
             // 
             // GeneralGUI
             // 
@@ -158,6 +159,7 @@
             this.Controls.Add(this.lbStaffMain);
             this.Name = "GeneralGUI";
             this.Text = "Malin Staff Details";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GeneralGUI_KeyDown);
             this.gbLogin.ResumeLayout(false);
             this.gbLogin.PerformLayout();
             this.gbShortcut.ResumeLayout(false);

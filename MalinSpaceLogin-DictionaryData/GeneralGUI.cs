@@ -23,16 +23,12 @@ namespace MalinSpaceLogin_DictionaryData
             InitializeComponent();
             ReadData();
             DisplayDataInListBox();
-            tbName.TextChanged += tbName_TextChanged;
-            tbID.TextChanged += tbID_TextChanged;
-            tbName.KeyDown += tbName_KeyDown;
-            tbID.KeyDown += tbID_KeyDown;
-            lbStaffSecondary.KeyDown += lbStaffSecondary_KeyDown;
+            this.KeyPreview = true;
         }
 
         //4.1.	Create a Dictionary data structure with a TKey of type integer and a TValue of type string,
         //      name the new data structure “MasterFile”.
-        
+
         Dictionary <int, string> MasterFile = new Dictionary <int, string>();
 
         //4.2.	Create a method that will read the data from the.csv file into the Dictionary data structure when the GUI loads.
@@ -107,11 +103,8 @@ namespace MalinSpaceLogin_DictionaryData
                 else
                 {
                     var query = tbName.Text.Trim().ToLower();
-
                     lbStaffSecondary.Items.Clear();
-
                     var filteredStaff = MasterFile.Where(s => s.Value.ToLower().Contains(query)).ToList();
-
                     foreach (var entry in filteredStaff)
                     {
                         lbStaffSecondary.Items.Add($"{entry.Key}    |    {entry.Value}");
@@ -136,21 +129,19 @@ namespace MalinSpaceLogin_DictionaryData
         {
             try
             {
-                if (int.TryParse(tbID.Text.Trim(), out int queryID))
+                if (string.IsNullOrWhiteSpace(tbID.Text))
                 {
                     lbStaffSecondary.Items.Clear();
-
-                    var filteredStaff = MasterFile.Where(s => s.Key == queryID).ToList();
-
+                }
+                else
+                {
+                    var query = tbID.Text;
+                    lbStaffSecondary.Items.Clear();
+                    var filteredStaff = MasterFile.Where(s => s.Key.ToString().Contains(query)).ToList();
                     foreach (var entry in filteredStaff)
                     {
                         lbStaffSecondary.Items.Add($"{entry.Key}    |    {entry.Value}");
                     }
-                }
-                else if (string.IsNullOrWhiteSpace(tbID.Text))
-                {
-                    // If the textbox is empty, you might want to show all items or clear the list box.
-                    lbStaffSecondary.Items.Clear();
                 }
             }
             catch (Exception ex) 
@@ -164,6 +155,13 @@ namespace MalinSpaceLogin_DictionaryData
             FilterByIDAndDisplay();
         }
 
+        private void tbID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Mark the event as handled, which prevents the key from being processed
+            }
+        }
 
 
         //4.6.	Create a method for the Staff Name text box which will clear the contents and place the focus into the Staff Name text box.
@@ -178,10 +176,10 @@ namespace MalinSpaceLogin_DictionaryData
             }
         }
 
-        private void ClearAndFocusTextBox(System.Windows.Forms.TextBox name)
+        private void ClearAndFocusTextBox(System.Windows.Forms.TextBox tb)
         {
-            name.Clear();
-            name.Focus();
+            tb.Clear();
+            tb.Focus();
         }
 
         //4.7.	Create a method for the Staff ID text box which will clear the contents and place the focus into the text box.
@@ -209,7 +207,7 @@ namespace MalinSpaceLogin_DictionaryData
 
         private void PopulateTextboxes()
         {
-            if (lbStaffSecondary.SelectedItems != null)
+            if (lbStaffSecondary.SelectedItem != null)
             {
                 string[] parts = lbStaffSecondary.SelectedItem.ToString().Split(new string[] { "    |    " }, StringSplitOptions.None);
                 if (parts.Length == 2)
@@ -225,16 +223,53 @@ namespace MalinSpaceLogin_DictionaryData
         //      to the Admin GUI for Update and Delete purposes and is opened as modal.
         //      Create modified logic to open the Admin GUI to Create a new user when the Staff ID 77
         //      and the Staff Name is empty.Read the appropriate criteria in the Admin GUI for further information.
+        private void GeneralGUI_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Alt && e.KeyCode == Keys.A)
+            {
+                OpenAdminGUI();
+            }
+        }
 
-        //4.10.	Add suitable error trapping and user feedback via a status strip or similar to ensure a fully functional User Experience.
-        //      Make all methods private and ensure the Dictionary is static and public.
+        private void OpenAdminGUI()
+        {
+            AdminGUI admin = new AdminGUI();
 
+            if (lbStaffSecondary.SelectedItems.Count > 0)
+            {
+                // Assuming the selected item's text is in the format "ID    |    Name"
+                string[] parts = lbStaffSecondary.SelectedItem.ToString().Split(new string[] { "    |    " }, StringSplitOptions.None);
+                if (parts.Length == 2)
+                {
+                    string idPart = parts[0].Trim();
+                    string namePart = parts[1].Trim();
 
-        //4.11.	Ensure all code is adequately commented.Map the programming criteria and features to your code/methods
-        //      by adding comments above the method signatures.
-        //      Ensure your code is compliant with the CITEMS coding standards (refer http://www.citems.com.au/).
+                    // Populate the AdminGUI form with selected values
+                    admin.SetStaffInfo(idPart, namePart);
+                }
 
+                //string name = tbName.Text;
+                //string id = tbID.Text;
 
+                //admin.SetStaffInfo(name, id);
+
+            }
+
+            admin.ShowDialog();
+        }
 
     }
+    //4.10.	Add suitable error trapping and user feedback via a status strip or similar to ensure a fully functional User Experience.
+
+
+    //      Make all methods private and ensure the Dictionary is static and public.
+
+
+    //4.11.	Ensure all code is adequately commented.Map the programming criteria and features to your code/methods
+    //      by adding comments above the method signatures.
+    //      Ensure your code is compliant with the CITEMS coding standards (refer http://www.citems.com.au/).
+
+
+
 }
+

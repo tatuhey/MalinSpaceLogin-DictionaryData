@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminGUI.Designer.cs">
+      <DependentUpon>AdminGUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="GeneralGUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +60,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AdminGUI.resx">
+      <DependentUpon>AdminGUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GeneralGUI.resx">
       <DependentUpon>GeneralGUI.cs</DependentUpon>
     </EmbeddedResource>
