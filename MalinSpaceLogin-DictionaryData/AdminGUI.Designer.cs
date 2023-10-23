@@ -33,7 +33,7 @@
             this.tbName = new System.Windows.Forms.TextBox();
             this.tbID = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -78,15 +78,17 @@
             this.btnAdd.TabIndex = 4;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // btnEdit
+            // btnUpdate
             // 
-            this.btnEdit.Location = new System.Drawing.Point(106, 100);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 23);
-            this.btnEdit.TabIndex = 5;
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnUpdate.Location = new System.Drawing.Point(106, 100);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdate.TabIndex = 5;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnDelete
             // 
@@ -103,7 +105,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(297, 147);
             this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnEdit);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.tbID);
             this.Controls.Add(this.tbName);
@@ -116,6 +118,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AdminGUI";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AdminGUI_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -126,7 +129,7 @@
         private System.Windows.Forms.Label lbName;
         private System.Windows.Forms.Label lbID;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
         internal System.Windows.Forms.TextBox tbName;
         internal System.Windows.Forms.TextBox tbID;

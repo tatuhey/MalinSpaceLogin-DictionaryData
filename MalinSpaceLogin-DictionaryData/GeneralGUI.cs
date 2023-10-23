@@ -25,6 +25,9 @@ namespace MalinSpaceLogin_DictionaryData
             DisplayDataInListBox();
             this.KeyPreview = true;
             stLabel.Text = string.Empty;
+            tbID.Text = string.Empty;
+            tbName.Text = string.Empty;
+            lbStaffSecondary.Items.Clear();
         }
 
         private object lastItemSelected = null;
@@ -258,11 +261,10 @@ namespace MalinSpaceLogin_DictionaryData
         {
             try
             {
-                AdminGUI admin = new AdminGUI();
-
                 // Check if SelectedItem is not null
                 if (lastItemSelected != null)
                 {
+                    AdminGUI admin = new AdminGUI();
                     //Assuming the selected item's text is in the format "ID    |    Name"
                     string[] parts = lastItemSelected.ToString().Split(new string[] { "    |    " }, StringSplitOptions.None);
 
@@ -274,8 +276,15 @@ namespace MalinSpaceLogin_DictionaryData
                         // Populate the AdminGUI form with selected values
                         admin.SetStaffInfo(name, id);
                     }
+                    admin.ShowDialog();
                 }
-                admin.ShowDialog();
+                else if (lastItemSelected == null && tbID.Text == "77" && tbName.Text == string.Empty)
+                {
+                    AdminGUI admin = new AdminGUI();
+
+                    admin.ShowDialog();
+                }
+                
             }
             catch (Exception ex)
             {

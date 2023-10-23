@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
 using System.Xml.Linq;
+using System.IO;
 
 namespace MalinSpaceLogin_DictionaryData
 {
@@ -17,6 +18,7 @@ namespace MalinSpaceLogin_DictionaryData
         public AdminGUI()
         {
             InitializeComponent();
+            this.KeyPreview = true;           
         }
 
         //5.1.	Create the Admin GUI with the following settings: GUI is model, all Control Box features are removed/hidden,
@@ -35,31 +37,82 @@ namespace MalinSpaceLogin_DictionaryData
         //5.3.	Create a method that will create a new Staff ID and input the staff name from the related text box.
         //The Staff ID must be unique starting with 77xxxxxxx while the staff name may be duplicated.
         //The new staff member must be added to the Dictionary data structure.
-        private void AddNewStaff()
+        private int NewStaffID()
         {
-            string name = tbName.Text;
-
-            // Generate unique Staff ID starting with 77xxxxxxx
             int maxID = 770000000;
-            while (GeneralGUI.MasterFile.ContainsKey(maxID))
+            try
             {
-                maxID++;
+                while (GeneralGUI.MasterFile.ContainsKey(maxID))
+                {
+                    maxID++;
+                }
             }
-
-            GeneralGUI.MasterFile.Add(maxID, name);
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return maxID;
         }
 
-
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            {
+                int newID = NewStaffID();
+                // ensures a valid ID was generated
+                if (newID != 0) 
+                {
+                    string name = tbName.Text.Trim();
+                    // ensures name isn't empty or white space
+                    if (!string.IsNullOrWhiteSpace(name)) 
+                    {
+                        GeneralGUI.MasterFile.Add(newID, name);
+                        MessageBox.Show("New name has been added.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please enter a valid name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Unable to generate a unique ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
 
         //5.4.	Create a method that will Update the name of the current Staff ID.
         private void UpdateStaffName()
         {
-            int id;
-            if (int.TryParse(tbID.Text, out id) && GeneralGUI.MasterFile.ContainsKey(id))
+            try
             {
-                string newName = tbName.Text;
-                GeneralGUI.MasterFile[id] = newName;
+                // Ensure there's a valid ID in tbID and a name in tbName
+                if (int.TryParse(tbID.Text, out int staffID) && !string.IsNullOrEmpty(tbName.Text))
+                {
+                    if (GeneralGUI.MasterFile.ContainsKey(staffID))
+                    {
+                        // Update the name associated with the staff ID
+                        GeneralGUI.MasterFile[staffID] = tbName.Text.Trim();
+                        MessageBox.Show("Name updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Staff ID {staffID} not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please enter a valid Staff ID and Name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            UpdateStaffName();
         }
 
 
@@ -76,11 +129,41 @@ namespace MalinSpaceLogin_DictionaryData
         }
 
 
+
+
         //5.6.	Create a method that will save changes to the csv file, this method should be called as the Admin GUI closes.
+        private void SaveToCSV()
+        {
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "MalinStaffNamesV2.csv");
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(filePath, false)) // False means overwrite the file
+                {
+                    foreach (var entry in GeneralGUI.MasterFile)
+                    {
+                        writer.WriteLine($"{entry.Key},{entry.Value}"); // Write each key,value pair as a line in the CSV
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
 
 
         //5.7.	Create a method that will close the Admin GUI when the Alt + L keys are pressed.
-
+        private void AdminGUI_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Check if Alt + L keys are pressed
+            if (e.Alt && e.KeyCode == Keys.L)
+            {
+                this.Close();
+            }
+        }
 
         //5.8.	Add suitable error trapping and user feedback via a status strip or similar to ensure a fully functional User Experience.
         //Make all methods private and ensure the Dictionary is updated.
