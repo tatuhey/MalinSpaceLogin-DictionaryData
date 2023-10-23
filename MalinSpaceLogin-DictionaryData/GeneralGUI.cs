@@ -241,11 +241,11 @@ namespace MalinSpaceLogin_DictionaryData
                 string[] parts = lbStaffSecondary.SelectedItem.ToString().Split(new string[] { "    |    " }, StringSplitOptions.None);
                 if (parts.Length == 2)
                 {
-                    string idPart = parts[0].Trim();
-                    string namePart = parts[1].Trim();
-
+                    string id = parts[0].Trim();
+                    string name = parts[1].Trim();
+                
                     // Populate the AdminGUI form with selected values
-                    admin.SetStaffInfo(idPart, namePart);
+                    admin.SetStaffInfo(id, name);
                 }
 
                 //string name = tbName.Text;
