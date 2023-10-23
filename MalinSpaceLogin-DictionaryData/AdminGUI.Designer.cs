@@ -101,7 +101,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(302, 147);
+            this.ClientSize = new System.Drawing.Size(297, 147);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnAdd);
@@ -125,10 +125,10 @@
 
         private System.Windows.Forms.Label lbName;
         private System.Windows.Forms.Label lbID;
-        private System.Windows.Forms.TextBox tbName;
-        private System.Windows.Forms.TextBox tbID;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnDelete;
+        internal System.Windows.Forms.TextBox tbName;
+        internal System.Windows.Forms.TextBox tbID;
     }
 }

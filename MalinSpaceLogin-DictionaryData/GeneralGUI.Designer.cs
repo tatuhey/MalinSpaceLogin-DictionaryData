@@ -171,16 +171,16 @@
         #endregion
 
         private System.Windows.Forms.ListBox lbStaffMain;
-        private System.Windows.Forms.ListBox lbStaffSecondary;
         private System.Windows.Forms.Label lbName;
         private System.Windows.Forms.Label lbID;
-        private System.Windows.Forms.TextBox tbName;
-        private System.Windows.Forms.TextBox tbID;
         private System.Windows.Forms.GroupBox gbLogin;
         private System.Windows.Forms.GroupBox gbShortcut;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        internal System.Windows.Forms.TextBox tbName;
+        internal System.Windows.Forms.TextBox tbID;
+        internal System.Windows.Forms.ListBox lbStaffSecondary;
     }
 }
 

@@ -29,7 +29,7 @@ namespace MalinSpaceLogin_DictionaryData
         //4.1.	Create a Dictionary data structure with a TKey of type integer and a TValue of type string,
         //      name the new data structure “MasterFile”.
 
-        Dictionary <int, string> MasterFile = new Dictionary <int, string>();
+        public static Dictionary <int, string> MasterFile = new Dictionary <int, string>();
 
         //4.2.	Create a method that will read the data from the.csv file into the Dictionary data structure when the GUI loads.
         private void ReadData()
@@ -235,28 +235,25 @@ namespace MalinSpaceLogin_DictionaryData
         {
             AdminGUI admin = new AdminGUI();
 
-            if (lbStaffSecondary.SelectedItems.Count > 0)
+            // Check if SelectedItem is not null
+            if (lbStaffSecondary.SelectedItem != null)
             {
-                // Assuming the selected item's text is in the format "ID    |    Name"
+                //Assuming the selected item's text is in the format "ID    |    Name"
                 string[] parts = lbStaffSecondary.SelectedItem.ToString().Split(new string[] { "    |    " }, StringSplitOptions.None);
+
                 if (parts.Length == 2)
                 {
                     string id = parts[0].Trim();
                     string name = parts[1].Trim();
-                
+
                     // Populate the AdminGUI form with selected values
-                    admin.SetStaffInfo(id, name);
+                    admin.SetStaffInfo(name, id);
                 }
-
-                //string name = tbName.Text;
-                //string id = tbID.Text;
-
-                //admin.SetStaffInfo(name, id);
-
             }
 
             admin.ShowDialog();
         }
+
 
     }
     //4.10.	Add suitable error trapping and user feedback via a status strip or similar to ensure a fully functional User Experience.
