@@ -35,12 +35,45 @@ namespace MalinSpaceLogin_DictionaryData
         //5.3.	Create a method that will create a new Staff ID and input the staff name from the related text box.
         //The Staff ID must be unique starting with 77xxxxxxx while the staff name may be duplicated.
         //The new staff member must be added to the Dictionary data structure.
+        private void AddNewStaff()
+        {
+            string name = tbName.Text;
+
+            // Generate unique Staff ID starting with 77xxxxxxx
+            int maxID = 770000000;
+            while (GeneralGUI.MasterFile.ContainsKey(maxID))
+            {
+                maxID++;
+            }
+
+            GeneralGUI.MasterFile.Add(maxID, name);
+        }
+
 
 
         //5.4.	Create a method that will Update the name of the current Staff ID.
+        private void UpdateStaffName()
+        {
+            int id;
+            if (int.TryParse(tbID.Text, out id) && GeneralGUI.MasterFile.ContainsKey(id))
+            {
+                string newName = tbName.Text;
+                GeneralGUI.MasterFile[id] = newName;
+            }
+        }
 
 
         //5.5.	Create a method that will Remove the current Staff ID and clear the text boxes.
+        private void RemoveStaff()
+        {
+            int id;
+            if (int.TryParse(tbID.Text, out id) && GeneralGUI.MasterFile.ContainsKey(id))
+            {
+                GeneralGUI.MasterFile.Remove(id);
+                tbID.Text = string.Empty;
+                tbName.Text = string.Empty;
+            }
+        }
 
 
         //5.6.	Create a method that will save changes to the csv file, this method should be called as the Admin GUI closes.

@@ -39,8 +39,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.stLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.gbLogin.SuspendLayout();
             this.gbShortcut.SuspendLayout();
+            this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbStaffMain
@@ -58,6 +61,7 @@
             this.lbStaffSecondary.Name = "lbStaffSecondary";
             this.lbStaffSecondary.Size = new System.Drawing.Size(196, 186);
             this.lbStaffSecondary.TabIndex = 1;
+            this.lbStaffSecondary.SelectedIndexChanged += new System.EventHandler(this.lbStaffSecondary_SelectedIndexChanged);
             this.lbStaffSecondary.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lbStaffSecondary_KeyDown);
             // 
             // lbName
@@ -84,6 +88,7 @@
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(100, 20);
             this.tbName.TabIndex = 4;
+            this.tbName.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tbName_MouseClick);
             this.tbName.TextChanged += new System.EventHandler(this.tbName_TextChanged);
             this.tbName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbName_KeyDown);
             // 
@@ -93,6 +98,7 @@
             this.tbID.Name = "tbID";
             this.tbID.Size = new System.Drawing.Size(100, 20);
             this.tbID.TabIndex = 5;
+            this.tbID.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tbID_MouseClick);
             this.tbID.TextChanged += new System.EventHandler(this.tbID_TextChanged);
             this.tbID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbID_KeyDown);
             this.tbID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbID_KeyPress);
@@ -148,11 +154,28 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "Alt + N | Clear Name";
             // 
+            // statusStrip
+            // 
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.stLabel});
+            this.statusStrip.Location = new System.Drawing.Point(0, 428);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(800, 22);
+            this.statusStrip.TabIndex = 8;
+            this.statusStrip.Text = "statusStrip1";
+            // 
+            // stLabel
+            // 
+            this.stLabel.Name = "stLabel";
+            this.stLabel.Size = new System.Drawing.Size(44, 17);
+            this.stLabel.Text = "stLabel";
+            // 
             // GeneralGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.gbShortcut);
             this.Controls.Add(this.gbLogin);
             this.Controls.Add(this.lbStaffSecondary);
@@ -164,7 +187,10 @@
             this.gbLogin.PerformLayout();
             this.gbShortcut.ResumeLayout(false);
             this.gbShortcut.PerformLayout();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -181,6 +207,8 @@
         internal System.Windows.Forms.TextBox tbName;
         internal System.Windows.Forms.TextBox tbID;
         internal System.Windows.Forms.ListBox lbStaffSecondary;
+        private System.Windows.Forms.StatusStrip statusStrip;
+        private System.Windows.Forms.ToolStripStatusLabel stLabel;
     }
 }
 

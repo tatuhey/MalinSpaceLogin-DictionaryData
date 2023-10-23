@@ -24,7 +24,11 @@ namespace MalinSpaceLogin_DictionaryData
             ReadData();
             DisplayDataInListBox();
             this.KeyPreview = true;
+            stLabel.Text = string.Empty;
         }
+
+        private object lastItemSelected = null;
+        private bool wasEnterKeyPressed = false;
 
         //4.1.	Create a Dictionary data structure with a TKey of type integer and a TValue of type string,
         //      name the new data structure “MasterFile”.
@@ -59,11 +63,13 @@ namespace MalinSpaceLogin_DictionaryData
                 else
                 {
                     MessageBox.Show("File does not exist", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    stLabel.Text = "Warning";
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message,"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                stLabel.Text = "Error";
             }
             
         }
@@ -85,6 +91,7 @@ namespace MalinSpaceLogin_DictionaryData
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                stLabel.Text = "Error";
             }
         }
 
@@ -99,6 +106,7 @@ namespace MalinSpaceLogin_DictionaryData
                 if (string.IsNullOrWhiteSpace(tbName.Text))
                 {
                     lbStaffSecondary.Items.Clear();
+                    stLabel.Text = string.Empty;
                 }
                 else
                 {
@@ -110,10 +118,12 @@ namespace MalinSpaceLogin_DictionaryData
                         lbStaffSecondary.Items.Add($"{entry.Key}    |    {entry.Value}");
                     }
                 }
+                stLabel.Text = "Filter by name is underway";
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                stLabel.Text = "Error";
             }
         }
 
@@ -132,6 +142,7 @@ namespace MalinSpaceLogin_DictionaryData
                 if (string.IsNullOrWhiteSpace(tbID.Text))
                 {
                     lbStaffSecondary.Items.Clear();
+                    stLabel.Text = string.Empty;
                 }
                 else
                 {
@@ -143,10 +154,12 @@ namespace MalinSpaceLogin_DictionaryData
                         lbStaffSecondary.Items.Add($"{entry.Key}    |    {entry.Value}");
                     }
                 }
+                stLabel.Text = "Filter by ID is underway";
             }
             catch (Exception ex) 
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                stLabel.Text = "Error";
             }
         }
 
@@ -173,6 +186,7 @@ namespace MalinSpaceLogin_DictionaryData
             {
                 ClearAndFocusTextBox(tbName);
                 e.Handled = true;
+                stLabel.Text = "Name field is cleared";
             }
         }
 
@@ -191,6 +205,7 @@ namespace MalinSpaceLogin_DictionaryData
             {
                 ClearAndFocusTextBox(tbID);
                 e.Handled = true;
+                stLabel.Text = "ID field is cleared";
             }
         }
 
@@ -202,20 +217,28 @@ namespace MalinSpaceLogin_DictionaryData
             {
                 PopulateTextboxes();
                 e.Handled = true;
+                wasEnterKeyPressed = true;
             }
+        }
+
+        private void lbStaffSecondary_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            lastItemSelected = lbStaffSecondary.SelectedItem;
         }
 
         private void PopulateTextboxes()
         {
-            if (lbStaffSecondary.SelectedItem != null)
+            if (lastItemSelected != null)
             {
-                string[] parts = lbStaffSecondary.SelectedItem.ToString().Split(new string[] { "    |    " }, StringSplitOptions.None);
+                string[] parts = lastItemSelected.ToString().Split(new string[] { "    |    " }, StringSplitOptions.None);
                 if (parts.Length == 2)
                 {
                     tbID.Text = parts[0].Trim();
                     tbName.Text = parts[1].Trim();
                 }
             }
+            stLabel.Text = "Details are available";
         }
 
         //4.9.	Create a method that will open the Admin GUI when the Alt + A keys are pressed.
@@ -233,32 +256,53 @@ namespace MalinSpaceLogin_DictionaryData
 
         private void OpenAdminGUI()
         {
-            AdminGUI admin = new AdminGUI();
-
-            // Check if SelectedItem is not null
-            if (lbStaffSecondary.SelectedItem != null)
+            try
             {
-                //Assuming the selected item's text is in the format "ID    |    Name"
-                string[] parts = lbStaffSecondary.SelectedItem.ToString().Split(new string[] { "    |    " }, StringSplitOptions.None);
+                AdminGUI admin = new AdminGUI();
 
-                if (parts.Length == 2)
+                // Check if SelectedItem is not null
+                if (lastItemSelected != null)
                 {
-                    string id = parts[0].Trim();
-                    string name = parts[1].Trim();
+                    //Assuming the selected item's text is in the format "ID    |    Name"
+                    string[] parts = lastItemSelected.ToString().Split(new string[] { "    |    " }, StringSplitOptions.None);
 
-                    // Populate the AdminGUI form with selected values
-                    admin.SetStaffInfo(name, id);
+                    if (parts.Length == 2)
+                    {
+                        string id = parts[0].Trim();
+                        string name = parts[1].Trim();
+
+                        // Populate the AdminGUI form with selected values
+                        admin.SetStaffInfo(name, id);
+                    }
                 }
+                admin.ShowDialog();
             }
-
-            admin.ShowDialog();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                stLabel.Text = "Error";
+            }
         }
 
+        private void tbName_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (!wasEnterKeyPressed)
+            {
+                tbID.Text = string.Empty;
+            }
+            wasEnterKeyPressed = false;
+        }
 
+        private void tbID_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (!wasEnterKeyPressed)
+            {
+                tbName.Text = string.Empty;
+            }
+            wasEnterKeyPressed = false;
+        }
     }
     //4.10.	Add suitable error trapping and user feedback via a status strip or similar to ensure a fully functional User Experience.
-
-
     //      Make all methods private and ensure the Dictionary is static and public.
 
 
