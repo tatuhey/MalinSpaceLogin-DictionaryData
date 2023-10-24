@@ -35,12 +35,14 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.gbAdmin = new System.Windows.Forms.GroupBox();
+            this.gbAdmin.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbName
             // 
             this.lbName.AutoSize = true;
-            this.lbName.Location = new System.Drawing.Point(22, 31);
+            this.lbName.Location = new System.Drawing.Point(6, 42);
             this.lbName.Name = "lbName";
             this.lbName.Size = new System.Drawing.Size(60, 13);
             this.lbName.TabIndex = 0;
@@ -49,7 +51,7 @@
             // lbID
             // 
             this.lbID.AutoSize = true;
-            this.lbID.Location = new System.Drawing.Point(22, 63);
+            this.lbID.Location = new System.Drawing.Point(23, 16);
             this.lbID.Name = "lbID";
             this.lbID.Size = new System.Drawing.Size(43, 13);
             this.lbID.TabIndex = 1;
@@ -57,14 +59,14 @@
             // 
             // tbName
             // 
-            this.tbName.Location = new System.Drawing.Point(88, 31);
+            this.tbName.Location = new System.Drawing.Point(72, 42);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(175, 20);
             this.tbName.TabIndex = 2;
             // 
             // tbID
             // 
-            this.tbID.Location = new System.Drawing.Point(88, 57);
+            this.tbID.Location = new System.Drawing.Point(72, 16);
             this.tbID.Name = "tbID";
             this.tbID.ReadOnly = true;
             this.tbID.Size = new System.Drawing.Size(175, 20);
@@ -72,7 +74,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(25, 100);
+            this.btnAdd.Location = new System.Drawing.Point(9, 68);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 4;
@@ -82,7 +84,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(106, 100);
+            this.btnUpdate.Location = new System.Drawing.Point(90, 68);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 5;
@@ -92,25 +94,34 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(188, 99);
+            this.btnDelete.Location = new System.Drawing.Point(172, 68);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 6;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             // 
+            // gbAdmin
+            // 
+            this.gbAdmin.Controls.Add(this.lbID);
+            this.gbAdmin.Controls.Add(this.btnDelete);
+            this.gbAdmin.Controls.Add(this.lbName);
+            this.gbAdmin.Controls.Add(this.btnUpdate);
+            this.gbAdmin.Controls.Add(this.tbName);
+            this.gbAdmin.Controls.Add(this.btnAdd);
+            this.gbAdmin.Controls.Add(this.tbID);
+            this.gbAdmin.Location = new System.Drawing.Point(12, 12);
+            this.gbAdmin.Name = "gbAdmin";
+            this.gbAdmin.Size = new System.Drawing.Size(255, 100);
+            this.gbAdmin.TabIndex = 7;
+            this.gbAdmin.TabStop = false;
+            // 
             // AdminGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(297, 147);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.tbID);
-            this.Controls.Add(this.tbName);
-            this.Controls.Add(this.lbID);
-            this.Controls.Add(this.lbName);
+            this.ClientSize = new System.Drawing.Size(280, 129);
+            this.Controls.Add(this.gbAdmin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -119,8 +130,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AdminGUI";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AdminGUI_KeyDown);
+            this.gbAdmin.ResumeLayout(false);
+            this.gbAdmin.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -133,5 +145,6 @@
         private System.Windows.Forms.Button btnDelete;
         internal System.Windows.Forms.TextBox tbName;
         internal System.Windows.Forms.TextBox tbID;
+        private System.Windows.Forms.GroupBox gbAdmin;
     }
 }
