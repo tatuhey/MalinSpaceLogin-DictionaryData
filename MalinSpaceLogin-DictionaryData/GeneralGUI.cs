@@ -321,11 +321,12 @@ namespace MalinSpaceLogin_DictionaryData
 
         private void ClearAllTexts()
         {
-            stLabel.Text = string.Empty;
             tbID.Text = string.Empty;
             tbName.Text = string.Empty;
             lbStaffSecondary.Items.Clear();
             lastItemSelected = null;
+            this.Focus();
+            stLabel.Text = string.Empty;
         }
         #endregion
 
