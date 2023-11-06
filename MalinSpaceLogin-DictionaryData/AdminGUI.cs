@@ -73,20 +73,13 @@ namespace MalinSpaceLogin_DictionaryData
                         GeneralGUI.MasterFile.Add(staffID, name);
                         MessageBox.Show("New entry has been added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    else
-                    {
-                        MessageBox.Show("Please enter a valid name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
+                    else                    
+                        MessageBox.Show("Please enter a valid name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); 
                 }
                 else
-                {
                     MessageBox.Show("This staff ID is already in the record", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         //5.4.	Create a method that will Update the name of the current Staff ID.
@@ -104,19 +97,12 @@ namespace MalinSpaceLogin_DictionaryData
                         MessageBox.Show("Name updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
-                    {
                         MessageBox.Show($"Staff ID {staffID} not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
                 }
                 else
-                {
                     MessageBox.Show("Please enter a valid Staff ID and Name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
 
@@ -137,20 +123,12 @@ namespace MalinSpaceLogin_DictionaryData
                         MessageBox.Show("Selected entry has been deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
-                    {
                         MessageBox.Show($"Staff ID {staffID} not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
                 }
                 else
-                {
                     MessageBox.Show("Please enter a valid Staff ID and Name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         //5.6.	Create a method that will save changes to the csv file, this method should be called as the Admin GUI closes.
@@ -167,12 +145,8 @@ namespace MalinSpaceLogin_DictionaryData
                     }
                 }
                 MessageBox.Show("New file is saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void AdminGUI_FormClosing(object sender, FormClosingEventArgs e)
