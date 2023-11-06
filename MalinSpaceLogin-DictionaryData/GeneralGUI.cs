@@ -45,7 +45,6 @@ namespace MalinSpaceLogin_DictionaryData
                 if (File.Exists(filePath))
                 {
                     var lines = File.ReadAllLines(filePath);
-
                     foreach (var line in lines)
                     {
                         var parts = line.Split(',');
@@ -175,7 +174,6 @@ namespace MalinSpaceLogin_DictionaryData
                 e.Handled = true; // Mark the event as handled, which prevents the key from being processed
             }
         }
-
 
         //4.6.	Create a method for the Staff Name text box which will clear the contents and place the focus into the Staff Name text box.
         //      Utilise a keyboard shortcut.
