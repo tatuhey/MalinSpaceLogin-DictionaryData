@@ -314,6 +314,11 @@ namespace MalinSpaceLogin_DictionaryData
     //4.10.	Add suitable error trapping and user feedback via a status strip or similar to ensure a fully functional User Experience.
     //      Make all methods private and ensure the Dictionary is static and public.
 
+    #region Quality of Life
+
+
+    #endregion
+
 
     //4.11.	Ensure all code is adequately commented.Map the programming criteria and features to your code/methods
     //      by adding comments above the method signatures.

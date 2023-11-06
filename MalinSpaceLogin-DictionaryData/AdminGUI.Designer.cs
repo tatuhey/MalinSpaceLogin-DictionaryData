@@ -100,6 +100,7 @@
             this.btnDelete.TabIndex = 6;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // gbAdmin
             // 
@@ -129,6 +130,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AdminGUI";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdminGUI_FormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AdminGUI_KeyDown);
             this.gbAdmin.ResumeLayout(false);
             this.gbAdmin.PerformLayout();

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
 using System.Xml.Linq;
 using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace MalinSpaceLogin_DictionaryData
 {
@@ -37,27 +38,34 @@ namespace MalinSpaceLogin_DictionaryData
         //5.3.	Create a method that will create a new Staff ID and input the staff name from the related text box.
         //The Staff ID must be unique starting with 77xxxxxxx while the staff name may be duplicated.
         //The new staff member must be added to the Dictionary data structure.
-        private int NewStaffID()
+        private int GenerateUniqueID()
         {
-            int maxID = 770000000;
+            Random random = new Random();
+            int uniqueID;
             try
             {
-                while (GeneralGUI.MasterFile.ContainsKey(maxID))
+                do
                 {
-                    maxID++;
+                    uniqueID = random.Next(0, 10000000) + 770000000;
                 }
+                while (GeneralGUI.MasterFile.ContainsKey(uniqueID));
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0;
             }
-            return maxID;
+
+            return uniqueID;
+
         }
+
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             {
-                int newID = NewStaffID();
+                int newID = GenerateUniqueID();
                 // ensures a valid ID was generated
                 if (newID != 0) 
                 {
@@ -119,15 +127,27 @@ namespace MalinSpaceLogin_DictionaryData
         //5.5.	Create a method that will Remove the current Staff ID and clear the text boxes.
         private void RemoveStaff()
         {
-            int id;
-            if (int.TryParse(tbID.Text, out id) && GeneralGUI.MasterFile.ContainsKey(id))
+            try
             {
-                GeneralGUI.MasterFile.Remove(id);
-                tbID.Text = string.Empty;
-                tbName.Text = string.Empty;
+                int id;
+                if (int.TryParse(tbID.Text, out id) && GeneralGUI.MasterFile.ContainsKey(id))
+                {
+                    GeneralGUI.MasterFile.Remove(id);
+                    tbID.Text = string.Empty;
+                    tbName.Text = string.Empty;
+                }
+                MessageBox.Show("Selected entry has been deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            RemoveStaff();
+        }
 
 
 
@@ -144,6 +164,8 @@ namespace MalinSpaceLogin_DictionaryData
                         writer.WriteLine($"{entry.Key},{entry.Value}"); // Write each key,value pair as a line in the CSV
                     }
                 }
+                MessageBox.Show("New file is saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
             catch (Exception ex)
             {
@@ -151,7 +173,11 @@ namespace MalinSpaceLogin_DictionaryData
             }
         }
 
-
+        private void AdminGUI_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SaveToCSV();
+            
+        }
 
 
 
@@ -164,6 +190,10 @@ namespace MalinSpaceLogin_DictionaryData
                 this.Close();
             }
         }
+
+
+
+
 
         //5.8.	Add suitable error trapping and user feedback via a status strip or similar to ensure a fully functional User Experience.
         //Make all methods private and ensure the Dictionary is updated.
