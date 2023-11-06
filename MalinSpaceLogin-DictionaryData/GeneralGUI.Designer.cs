@@ -36,14 +36,14 @@
             this.tbID = new System.Windows.Forms.TextBox();
             this.gbLogin = new System.Windows.Forms.GroupBox();
             this.gbShortcut = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.stLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.gbRawdata = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.gbLogin.SuspendLayout();
             this.gbShortcut.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -134,6 +134,24 @@
             this.gbShortcut.TabStop = false;
             this.gbShortcut.Text = "Shortcuts";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(48, 80);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(70, 13);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "and selection";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 67);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(150, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Alt + C | Clear texboxes, listbox";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -186,24 +204,6 @@
             this.gbRawdata.TabIndex = 9;
             this.gbRawdata.TabStop = false;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 67);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(150, 13);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Alt + C | Clear texboxes, listbox";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(48, 80);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(70, 13);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "and selection";
-            // 
             // GeneralGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -214,7 +214,7 @@
             this.Controls.Add(this.gbShortcut);
             this.Controls.Add(this.gbLogin);
             this.Name = "GeneralGUI";
-            this.Text = "Malin Staff Details";
+            this.Text = "Malin Staff Details - Dictionary";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GeneralGUI_KeyDown);
             this.gbLogin.ResumeLayout(false);
             this.gbLogin.PerformLayout();
