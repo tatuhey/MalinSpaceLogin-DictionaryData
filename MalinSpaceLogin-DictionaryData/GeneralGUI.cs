@@ -33,7 +33,7 @@ namespace MalinSpaceLogin_DictionaryData
         //4.1.	Create a Dictionary data structure with a TKey of type integer and a TValue of type string,
         //      name the new data structure “MasterFile”.
 
-        public static Dictionary <int, string> MasterFile = new Dictionary <int, string>();
+        public static Dictionary<int, string> MasterFile = new Dictionary<int, string>();
 
         //4.2.	Create a method that will read the data from the.csv file into the Dictionary data structure when the GUI loads.
         private void ReadData()
@@ -67,10 +67,10 @@ namespace MalinSpaceLogin_DictionaryData
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message,"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 stLabel.Text = "Error";
             }
-            
+
         }
 
         //4.3.	Create a method to display the Dictionary data into a non-selectable display only list box (ie read only).
@@ -155,7 +155,7 @@ namespace MalinSpaceLogin_DictionaryData
                 }
                 stLabel.Text = "Filter by ID is underway";
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 stLabel.Text = "Error";
@@ -285,7 +285,7 @@ namespace MalinSpaceLogin_DictionaryData
 
                     admin.ShowDialog();
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -293,6 +293,11 @@ namespace MalinSpaceLogin_DictionaryData
                 stLabel.Text = "Error";
             }
         }
+
+
+
+        //4.10.	Add suitable error trapping and user feedback via a status strip or similar to ensure a fully functional User Experience.
+        //      Make all methods private and ensure the Dictionary is static and public.
 
         #region Quality of Life
 
@@ -323,14 +328,11 @@ namespace MalinSpaceLogin_DictionaryData
             lastItemSelected = null;
         }
         #endregion
+
+        //4.11.	Ensure all code is adequately commented.Map the programming criteria and features to your code/methods
+        //      by adding comments above the method signatures.
+        //      Ensure your code is compliant with the CITEMS coding standards (refer http://www.citems.com.au/).
     }
-    //4.10.	Add suitable error trapping and user feedback via a status strip or similar to ensure a fully functional User Experience.
-    //      Make all methods private and ensure the Dictionary is static and public.
-
-    //4.11.	Ensure all code is adequately commented.Map the programming criteria and features to your code/methods
-    //      by adding comments above the method signatures.
-    //      Ensure your code is compliant with the CITEMS coding standards (refer http://www.citems.com.au/).
-
 
 
 }

@@ -27,6 +27,7 @@ namespace MalinSpaceLogin_DictionaryData
         //then add two text boxes.The text box for the Staff ID should be read-only for Add, Update and Delete purposes.
 
         //5.2.	Create a method that will receive the Staff ID from the General GUI and then populate text boxes with the related data. 
+
         // Inside AdminGUI.cs
         public void SetStaffInfo(string name, string staffID)
         {
