@@ -24,10 +24,7 @@ namespace MalinSpaceLogin_DictionaryData
             ReadData();
             DisplayDataInListBox();
             this.KeyPreview = true;
-            stLabel.Text = string.Empty;
-            tbID.Text = string.Empty;
-            tbName.Text = string.Empty;
-            lbStaffSecondary.Items.Clear();
+            ClearAllTexts();
         }
 
         private object lastItemSelected = null;
@@ -255,6 +252,12 @@ namespace MalinSpaceLogin_DictionaryData
             {
                 OpenAdminGUI();
             }
+
+            // Quality of life
+            if (e.Alt && e.KeyCode == Keys.C)
+            {
+                ClearAllTexts();
+            }
         }
 
         private void OpenAdminGUI()
@@ -293,6 +296,8 @@ namespace MalinSpaceLogin_DictionaryData
             }
         }
 
+        #region Quality of Life
+
         private void tbName_MouseClick(object sender, MouseEventArgs e)
         {
             if (!wasEnterKeyPressed)
@@ -310,15 +315,19 @@ namespace MalinSpaceLogin_DictionaryData
             }
             wasEnterKeyPressed = false;
         }
+
+        private void ClearAllTexts()
+        {
+            stLabel.Text = string.Empty;
+            tbID.Text = string.Empty;
+            tbName.Text = string.Empty;
+            lbStaffSecondary.Items.Clear();
+            lastItemSelected = null;
+        }
+        #endregion
     }
     //4.10.	Add suitable error trapping and user feedback via a status strip or similar to ensure a fully functional User Experience.
     //      Make all methods private and ensure the Dictionary is static and public.
-
-    #region Quality of Life
-
-
-    #endregion
-
 
     //4.11.	Ensure all code is adequately commented.Map the programming criteria and features to your code/methods
     //      by adding comments above the method signatures.

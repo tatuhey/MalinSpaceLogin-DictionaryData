@@ -32,11 +32,14 @@
             this.lbID = new System.Windows.Forms.Label();
             this.tbName = new System.Windows.Forms.TextBox();
             this.tbID = new System.Windows.Forms.TextBox();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.gbAdmin = new System.Windows.Forms.GroupBox();
+            this.gbShortcuts = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.gbAdmin.SuspendLayout();
+            this.gbShortcuts.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbName
@@ -61,7 +64,7 @@
             // 
             this.tbName.Location = new System.Drawing.Point(72, 42);
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(175, 20);
+            this.tbName.Size = new System.Drawing.Size(133, 20);
             this.tbName.TabIndex = 2;
             // 
             // tbID
@@ -69,59 +72,75 @@
             this.tbID.Location = new System.Drawing.Point(72, 16);
             this.tbID.Name = "tbID";
             this.tbID.ReadOnly = true;
-            this.tbID.Size = new System.Drawing.Size(175, 20);
+            this.tbID.Size = new System.Drawing.Size(133, 20);
             this.tbID.TabIndex = 3;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(9, 68);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 4;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(90, 68);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
-            this.btnUpdate.TabIndex = 5;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(172, 68);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
-            this.btnDelete.TabIndex = 6;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // gbAdmin
             // 
             this.gbAdmin.Controls.Add(this.lbID);
-            this.gbAdmin.Controls.Add(this.btnDelete);
             this.gbAdmin.Controls.Add(this.lbName);
-            this.gbAdmin.Controls.Add(this.btnUpdate);
             this.gbAdmin.Controls.Add(this.tbName);
-            this.gbAdmin.Controls.Add(this.btnAdd);
             this.gbAdmin.Controls.Add(this.tbID);
             this.gbAdmin.Location = new System.Drawing.Point(12, 12);
             this.gbAdmin.Name = "gbAdmin";
-            this.gbAdmin.Size = new System.Drawing.Size(255, 100);
+            this.gbAdmin.Size = new System.Drawing.Size(215, 88);
             this.gbAdmin.TabIndex = 7;
             this.gbAdmin.TabStop = false;
+            // 
+            // gbShortcuts
+            // 
+            this.gbShortcuts.Controls.Add(this.label4);
+            this.gbShortcuts.Controls.Add(this.label3);
+            this.gbShortcuts.Controls.Add(this.label2);
+            this.gbShortcuts.Controls.Add(this.label1);
+            this.gbShortcuts.Location = new System.Drawing.Point(233, 17);
+            this.gbShortcuts.Name = "gbShortcuts";
+            this.gbShortcuts.Size = new System.Drawing.Size(116, 83);
+            this.gbShortcuts.TabIndex = 8;
+            this.gbShortcuts.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 60);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(94, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Alt + L | Close form";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 11);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(91, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Ctrl + A | Add staff";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 24);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(108, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Ctrl + U | Update staff";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 37);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(104, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Ctrl + D | Delete staff";
             // 
             // AdminGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(280, 129);
+            this.ClientSize = new System.Drawing.Size(360, 129);
+            this.Controls.Add(this.gbShortcuts);
             this.Controls.Add(this.gbAdmin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -134,6 +153,8 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AdminGUI_KeyDown);
             this.gbAdmin.ResumeLayout(false);
             this.gbAdmin.PerformLayout();
+            this.gbShortcuts.ResumeLayout(false);
+            this.gbShortcuts.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -142,11 +163,13 @@
 
         private System.Windows.Forms.Label lbName;
         private System.Windows.Forms.Label lbID;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.Button btnDelete;
         internal System.Windows.Forms.TextBox tbName;
         internal System.Windows.Forms.TextBox tbID;
         private System.Windows.Forms.GroupBox gbAdmin;
+        private System.Windows.Forms.GroupBox gbShortcuts;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
     }
 }

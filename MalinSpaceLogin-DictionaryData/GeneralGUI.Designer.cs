@@ -42,6 +42,8 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.stLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.gbRawdata = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.gbLogin.SuspendLayout();
             this.gbShortcut.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -120,6 +122,8 @@
             // 
             // gbShortcut
             // 
+            this.gbShortcut.Controls.Add(this.label5);
+            this.gbShortcut.Controls.Add(this.label4);
             this.gbShortcut.Controls.Add(this.label3);
             this.gbShortcut.Controls.Add(this.label2);
             this.gbShortcut.Controls.Add(this.label1);
@@ -182,6 +186,24 @@
             this.gbRawdata.TabIndex = 9;
             this.gbRawdata.TabStop = false;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 67);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(150, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Alt + C | Clear texboxes, listbox";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(48, 80);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(70, 13);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "and selection";
+            // 
             // GeneralGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -222,6 +244,8 @@
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel stLabel;
         private System.Windows.Forms.GroupBox gbRawdata;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }
 
