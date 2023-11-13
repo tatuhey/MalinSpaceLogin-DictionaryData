@@ -161,6 +161,11 @@ namespace MalinSpaceLogin_DictionaryData
         private void tbName_TextChanged(object sender, EventArgs e)
         {
             FilterByNameAndDisplay();
+
+            int swap = tbID.TabIndex;
+            tbID.TabIndex = tbName.TabIndex;
+            tbName.TabIndex = swap;
+
         }
 
         //4.5.	Create a method to filter the Staff ID data from the Dictionary into the second filtered and selectable list box.
@@ -203,6 +208,9 @@ namespace MalinSpaceLogin_DictionaryData
         private void tbID_TextChanged(object sender, EventArgs e)
         {
             FilterByIDAndDisplay();
+            int swap = tbID.TabIndex;
+            tbID.TabIndex = tbName.TabIndex;
+            tbName.TabIndex = swap;
         }
 
         private void tbID_KeyPress(object sender, KeyPressEventArgs e)
@@ -225,17 +233,6 @@ namespace MalinSpaceLogin_DictionaryData
                 e.Handled = true;
                 stLabel.Text = "Name field is cleared";
             }
-
-            else if (e.KeyCode == Keys.Tab)
-            {
-                if (lbStaffSecondary.Items.Count > 0)
-                {
-                    lbStaffSecondary.Focus();
-                    lbStaffSecondary.SelectedIndex = 0;
-                    e.Handled = true;
-                }
-
-            }
         }
 
         private void ClearAndFocusTextBox(System.Windows.Forms.TextBox tb)
@@ -255,18 +252,13 @@ namespace MalinSpaceLogin_DictionaryData
                 e.Handled = true;
                 stLabel.Text = "ID field is cleared";
             }
-
-            if (e.KeyCode == Keys.Tab)
-            {
-                lbStaffSecondary.SelectedIndex = 0;
-            }
         }
 
         //4.8.	Create a method for the filtered and selectable list box which will populate the two text boxes
         //      when a staff record is selected. Utilise the Tab and keyboard keys.
         private void lbStaffSecondary_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 PopulateTextboxes();
                 e.Handled = true;

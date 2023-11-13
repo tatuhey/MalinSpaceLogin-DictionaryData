@@ -57,6 +57,7 @@
             this.lbStaffMain.Name = "lbStaffMain";
             this.lbStaffMain.Size = new System.Drawing.Size(177, 290);
             this.lbStaffMain.TabIndex = 0;
+            this.lbStaffMain.TabStop = false;
             // 
             // lbStaffSecondary
             // 
@@ -64,7 +65,7 @@
             this.lbStaffSecondary.Location = new System.Drawing.Point(6, 68);
             this.lbStaffSecondary.Name = "lbStaffSecondary";
             this.lbStaffSecondary.Size = new System.Drawing.Size(177, 238);
-            this.lbStaffSecondary.TabIndex = 1;
+            this.lbStaffSecondary.TabIndex = 3;
             this.lbStaffSecondary.SelectedIndexChanged += new System.EventHandler(this.lbStaffSecondary_SelectedIndexChanged);
             this.lbStaffSecondary.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lbStaffSecondary_KeyDown);
             // 
@@ -91,7 +92,7 @@
             this.tbName.Location = new System.Drawing.Point(72, 42);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(111, 20);
-            this.tbName.TabIndex = 4;
+            this.tbName.TabIndex = 1;
             this.tbName.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tbName_MouseClick);
             this.tbName.TextChanged += new System.EventHandler(this.tbName_TextChanged);
             this.tbName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbName_KeyDown);
@@ -101,7 +102,7 @@
             this.tbID.Location = new System.Drawing.Point(72, 13);
             this.tbID.Name = "tbID";
             this.tbID.Size = new System.Drawing.Size(111, 20);
-            this.tbID.TabIndex = 5;
+            this.tbID.TabIndex = 0;
             this.tbID.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tbID_MouseClick);
             this.tbID.TextChanged += new System.EventHandler(this.tbID_TextChanged);
             this.tbID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbID_KeyDown);
@@ -186,7 +187,7 @@
             this.statusStrip.Location = new System.Drawing.Point(0, 334);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(605, 22);
-            this.statusStrip.TabIndex = 8;
+            this.statusStrip.TabIndex = 0;
             this.statusStrip.Text = "statusStrip1";
             // 
             // stLabel
@@ -213,6 +214,7 @@
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.gbShortcut);
             this.Controls.Add(this.gbLogin);
+            this.KeyPreview = true;
             this.Name = "GeneralGUI";
             this.Text = "Malin Staff Details - Dictionary";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GeneralGUI_FormClosing);
