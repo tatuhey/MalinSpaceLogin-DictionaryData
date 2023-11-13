@@ -132,7 +132,7 @@ namespace MalinSpaceLogin_DictionaryData
                 if (string.IsNullOrWhiteSpace(tbName.Text))
                 {
                     lbStaffSecondary.Items.Clear();
-                    stLabel.Text = string.Empty;
+                    stLabel.Text = "Enter a name to filter.";
                 }
                 else
                 {
@@ -144,12 +144,12 @@ namespace MalinSpaceLogin_DictionaryData
                         lbStaffSecondary.Items.Add($"{entry.Key}    |    {entry.Value}");
                     }
                 }
-                stLabel.Text = "Filter by name is underway";
+                stLabel.Text = "Filter by name is complete.";
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                stLabel.Text = "Error";
+                stLabel.Text = "Error during filtering.";
             }
 
             sw.Stop();
@@ -175,7 +175,7 @@ namespace MalinSpaceLogin_DictionaryData
                 if (string.IsNullOrWhiteSpace(tbID.Text))
                 {
                     lbStaffSecondary.Items.Clear();
-                    stLabel.Text = string.Empty;
+                    stLabel.Text = "Enter an ID to filter.";
                 }
                 else
                 {
@@ -187,12 +187,12 @@ namespace MalinSpaceLogin_DictionaryData
                         lbStaffSecondary.Items.Add($"{entry.Key}    |    {entry.Value}");
                     }
                 }
-                stLabel.Text = "Filter by ID is underway";
+                stLabel.Text = "Filter by ID is complete.";
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                stLabel.Text = "Error";
+                stLabel.Text = "Error during filtering.";
             }
             sw.Stop();
             Trace.WriteLine($"The elapsed time for  FilterByIDAndDisplay() is {sw.ElapsedTicks} ticks");
@@ -211,6 +211,7 @@ namespace MalinSpaceLogin_DictionaryData
             {
                 e.Handled = true; // Mark the event as handled, which prevents the key from being processed
             }
+
         }
 
         //4.6.	Create a method for the Staff Name text box which will clear the contents and place the focus into the Staff Name text box.
@@ -223,6 +224,17 @@ namespace MalinSpaceLogin_DictionaryData
                 ClearAndFocusTextBox(tbName);
                 e.Handled = true;
                 stLabel.Text = "Name field is cleared";
+            }
+
+            else if (e.KeyCode == Keys.Tab)
+            {
+                if (lbStaffSecondary.Items.Count > 0)
+                {
+                    lbStaffSecondary.Focus();
+                    lbStaffSecondary.SelectedIndex = 0;
+                    e.Handled = true;
+                }
+
             }
         }
 
@@ -242,6 +254,11 @@ namespace MalinSpaceLogin_DictionaryData
                 ClearAndFocusTextBox(tbID);
                 e.Handled = true;
                 stLabel.Text = "ID field is cleared";
+            }
+
+            if (e.KeyCode == Keys.Tab)
+            {
+                lbStaffSecondary.SelectedIndex = 0;
             }
         }
 
