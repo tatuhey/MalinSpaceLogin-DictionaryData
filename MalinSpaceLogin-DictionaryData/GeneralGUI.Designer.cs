@@ -215,6 +215,7 @@
             this.Controls.Add(this.gbLogin);
             this.Name = "GeneralGUI";
             this.Text = "Malin Staff Details - Dictionary";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GeneralGUI_FormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GeneralGUI_KeyDown);
             this.gbLogin.ResumeLayout(false);
             this.gbLogin.PerformLayout();

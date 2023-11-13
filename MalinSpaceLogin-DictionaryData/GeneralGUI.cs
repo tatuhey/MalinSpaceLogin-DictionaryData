@@ -13,6 +13,7 @@ using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Xml.Linq;
 using System.IO;
+using System.Diagnostics;
 
 namespace MalinSpaceLogin_DictionaryData
 {
@@ -21,10 +22,18 @@ namespace MalinSpaceLogin_DictionaryData
         public GeneralGUI()
         {
             InitializeComponent();
+            ConfigureTraceListener();
             ReadData();
             DisplayDataInListBox();
             this.KeyPreview = true;
             ClearAllTexts();
+        }
+
+        private void ConfigureTraceListener()
+        {
+            string logFilePath = "TraceOutput.log";
+            TextWriterTraceListener textListener = new TextWriterTraceListener(File.Create(logFilePath));
+            Trace.Listeners.Add(textListener);
         }
 
         private object lastItemSelected = null;
@@ -38,6 +47,9 @@ namespace MalinSpaceLogin_DictionaryData
         //4.2.	Create a method that will read the data from the.csv file into the Dictionary data structure when the GUI loads.
         private void ReadData()
         {
+
+            Trace.WriteLine("Tracing 4.2 ReadData() in Dictionary");
+            Stopwatch sw = Stopwatch.StartNew();
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), "MalinStaffNamesV2.csv");
 
             try
@@ -71,11 +83,19 @@ namespace MalinSpaceLogin_DictionaryData
                 stLabel.Text = "Error";
             }
 
+            sw.Stop();
+            Trace.WriteLine($"The elapsed time for ReadData() is {sw.ElapsedTicks} ticks");
+            Trace.WriteLine("---");
+            Trace.Flush();
+
         }
 
         //4.3.	Create a method to display the Dictionary data into a non-selectable display only list box (ie read only).
         private void DisplayDataInListBox()
         {
+            Trace.WriteLine("Tracing 4.3 DisplayDataInListBox() in Dictionary");
+            Stopwatch sw = Stopwatch.StartNew();
+
             try
             {
                 lbStaffMain.Items.Clear();  // Clear any existing items
@@ -92,6 +112,11 @@ namespace MalinSpaceLogin_DictionaryData
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 stLabel.Text = "Error";
             }
+
+            sw.Stop();
+            Trace.WriteLine($"The elapsed time for DisplayDataInListBox() is {sw.ElapsedTicks} ticks");
+            Trace.WriteLine("---");
+            Trace.Flush();
         }
 
         //4.4.	Create a method to filter the Staff Name data from the Dictionary into a second filtered and selectable list box.
@@ -100,6 +125,8 @@ namespace MalinSpaceLogin_DictionaryData
 
         private void FilterByNameAndDisplay()
         {
+            Trace.WriteLine("Tracing 4.4 FilterByNameAndDisplay() in Dictionary");
+            Stopwatch sw = Stopwatch.StartNew();
             try
             {
                 if (string.IsNullOrWhiteSpace(tbName.Text))
@@ -124,6 +151,11 @@ namespace MalinSpaceLogin_DictionaryData
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 stLabel.Text = "Error";
             }
+
+            sw.Stop();
+            Trace.WriteLine($"The elapsed time for FilterByNameAndDisplay() is {sw.ElapsedTicks} ticks");
+            Trace.WriteLine("---");
+            Trace.Flush();
         }
 
         private void tbName_TextChanged(object sender, EventArgs e)
@@ -136,6 +168,8 @@ namespace MalinSpaceLogin_DictionaryData
         //      The list box must reflect the filtered data in real time.
         private void FilterByIDAndDisplay()
         {
+            Trace.WriteLine("Tracing 4.5 FilterByIDAndDisplay() in Dictionary");
+            Stopwatch sw = Stopwatch.StartNew();
             try
             {
                 if (string.IsNullOrWhiteSpace(tbID.Text))
@@ -160,6 +194,10 @@ namespace MalinSpaceLogin_DictionaryData
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 stLabel.Text = "Error";
             }
+            sw.Stop();
+            Trace.WriteLine($"The elapsed time for  FilterByIDAndDisplay() is {sw.ElapsedTicks} ticks");
+            Trace.WriteLine("---");
+            Trace.Flush();
         }
 
         private void tbID_TextChanged(object sender, EventArgs e)
@@ -260,6 +298,8 @@ namespace MalinSpaceLogin_DictionaryData
 
         private void OpenAdminGUI()
         {
+            Trace.WriteLine("Tracing 4.9 OpenAdminGUI() in Dictionary");
+            Stopwatch sw = Stopwatch.StartNew();
             try
             {
                 // Check if SelectedItem is not null
@@ -292,6 +332,10 @@ namespace MalinSpaceLogin_DictionaryData
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 stLabel.Text = "Error";
             }
+            sw.Stop();
+            Trace.WriteLine($"The elapsed time for OpenAdminGUI() is {sw.ElapsedTicks} ticks");
+            Trace.WriteLine("---");
+            Trace.Flush();
         }
 
 
@@ -328,11 +372,19 @@ namespace MalinSpaceLogin_DictionaryData
             this.Focus();
             stLabel.Text = string.Empty;
         }
+
+        private void GeneralGUI_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Trace.Flush();
+            foreach(TraceListener listener in Trace.Listeners) {listener.Close(); }
+        }
         #endregion
 
         //4.11.	Ensure all code is adequately commented.Map the programming criteria and features to your code/methods
         //      by adding comments above the method signatures.
         //      Ensure your code is compliant with the CITEMS coding standards (refer http://www.citems.com.au/).
+
+
     }
 
 

@@ -12,6 +12,7 @@ using System.Xml.Linq;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Diagnostics.Eventing.Reader;
+using System.Diagnostics;
 
 namespace MalinSpaceLogin_DictionaryData
 {
@@ -40,6 +41,7 @@ namespace MalinSpaceLogin_DictionaryData
         //The new staff member must be added to the Dictionary data structure.
         private int GenerateUniqueID()
         {
+
             Random random = new Random();
             int uniqueID;
             try
@@ -57,10 +59,14 @@ namespace MalinSpaceLogin_DictionaryData
                 return 0;
             }
             return uniqueID;
+
         }
 
         private void AddStaff()
         {
+            Trace.WriteLine("Tracing 5.3 GenerateUniqueID() and AddStaff() in Dictionary");
+            Stopwatch sw = Stopwatch.StartNew();
+
             int staffID = GenerateUniqueID();
             try
             {
@@ -81,11 +87,18 @@ namespace MalinSpaceLogin_DictionaryData
                     MessageBox.Show("This staff ID is already in the record", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+
+            sw.Stop();
+            Trace.WriteLine($"The elapsed time for GenerateUniqueID() and AddStaff() is {sw.ElapsedTicks} ticks");
+            Trace.WriteLine("---");
+            Trace.Flush();
         }
 
         //5.4.	Create a method that will Update the name of the current Staff ID.
         private void UpdateStaffName()
         {
+            Trace.WriteLine("Tracing 5.4 UpdateStaffName() in Dictionary");
+            Stopwatch sw = Stopwatch.StartNew();
             try
             {
                 // Ensure there's a valid ID in tbID and a name in tbName
@@ -104,12 +117,18 @@ namespace MalinSpaceLogin_DictionaryData
                     MessageBox.Show("Please enter a valid Staff ID and Name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            sw.Stop();
+            Trace.WriteLine($"The elapsed time for UpdateStaffName() is {sw.ElapsedTicks} ticks");
+            Trace.WriteLine("---");
+            Trace.Flush();
         }
 
 
         //5.5.	Create a method that will Remove the current Staff ID and clear the text boxes.
         private void RemoveStaff()
         {
+            Trace.WriteLine("Tracing 5.5 RemoveStaff() in Dictionary");
+            Stopwatch sw = Stopwatch.StartNew();
             try
             {
                 // Ensure there's a valid ID in tbID and a name in tbName
@@ -130,11 +149,18 @@ namespace MalinSpaceLogin_DictionaryData
                     MessageBox.Show("Please enter a valid Staff ID and Name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            sw.Stop();
+            Trace.WriteLine($"The elapsed time for RemoveStaff() is {sw.ElapsedTicks} ticks");
+            Trace.WriteLine("---");
+            Trace.Flush();
         }
 
         //5.6.	Create a method that will save changes to the csv file, this method should be called as the Admin GUI closes.
         private void SaveToCSV()
         {
+            Trace.WriteLine("Tracing 5.6 SaveToCSV() in Dictionary");
+            Stopwatch sw = Stopwatch.StartNew();
+
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), "MalinStaffNamesV2.csv");
             try
             {
@@ -148,6 +174,10 @@ namespace MalinSpaceLogin_DictionaryData
                 MessageBox.Show("New file is saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            sw.Stop();
+            Trace.WriteLine($"The elapsed time for SaveToCSV() is {sw.ElapsedTicks} ticks");
+            Trace.WriteLine("---");
+            Trace.Flush();
         }
 
         private void AdminGUI_FormClosing(object sender, FormClosingEventArgs e)
